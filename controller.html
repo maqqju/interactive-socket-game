@@ -26,7 +26,7 @@
 	<body>
 		Controller
 		<button class="console-button" id="jumpButton">JUMP</button>
-		<button class="console-button" id="downButton">DOWN</button>
+		<!-- <button class="console-button" id="downButton">DOWN</button> -->
 
 		<script type="text/javascript">
 			document.getElementById("jumpButton").addEventListener("click", () => {
@@ -34,23 +34,13 @@
 				return false;
 			});
 
-			document.getElementById("downButton").addEventListener("click", () => {
-				socket.emit("down", {action : "down", time : Date.now()});
-				return false;
-			});
-
-			// document.getElementById("jump").addEventListener("click", () => {
-			// 	socket.emit("action", {action : "jump"});
-			// 	return false;
-			// });
-
-			// document.getElementById("down").addEventListener("click", () => {
-			// 	socket.emit("action", {action : "down"});
+			// document.getElementById("downButton").addEventListener("click", () => {
+			// 	socket.emit("down", {action : "down", time : Date.now()});
 			// 	return false;
 			// });
 
 			socket.on("crashed", (crashdata) => {
-				window.navigator.vibrate && window.navigator.vibrate(crashdata.duration * 100);
+				window.navigator.vibrate && window.navigator.vibrate(crashdata.duration);
 			}); 
 		</script>
 	</body>
