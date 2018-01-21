@@ -25,16 +25,16 @@
 </head>
 	<body>
 		Controller
-		<div class="console-button" id="jump">JUMP</div>
-		<div class="console-button" id="down">DOWN</div>
+		<button class="console-button" id="jump">JUMP</button>
+		<button class="console-button" id="down">DOWN</button>
 
 		<script type="text/javascript">
-			document.getElementById("jump").addEventListener("touchstart", () => {
+			document.getElementById("jump").addEventListener("click", () => {
 				socket.emit("action", {action : "jump"});
 				return false;
 			});
 
-			document.getElementById("down").addEventListener("touchstart", () => {
+			document.getElementById("down").addEventListener("click", () => {
 				socket.emit("action", {action : "down"});
 				return false;
 			});
