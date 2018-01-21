@@ -7,19 +7,40 @@
 	<script>
 	  var socket = io();
 	</script>
+	<style type="text/css">
+		.console-button {
+			width : 100;
+			height : 100;
+		}
+
+		#jump {
+			background-color: green;
+		}
+
+		#down {
+			background-color: red;
+		}
+		
+	</style>
 </head>
 	<body>
 		Controller
-		<button id="sendButton">Press for Jump</button>
+		<div class="console-button" id="jump">JUMP</button>
+		<div class="console-button" id="down">DOWN</button>
 
 		<script type="text/javascript">
-			document.getElementById("sendButton").addEventListener("click", () => {
-				socket.emit("jump", {time : Date.now()});
-
+			document.getElementById("jump").addEventListener("touchstart", () => {
+				socket.emit("action", {action : "jump"});
 				return false;
 			});
+
+			document.getElementById("down").addEventListener("touchstart", () => {
+				socket.emit("action", {action : "down"});
+				return false;
+			});
+
 			socket.on("crashed", (crashdata) => {
-				window.navigator.vibrate && window.navigator.vibrate(1000);
+				window.navigator.vibrate && window.navigator.vibrate(crashdata.duration * 100);
 			}); 
 		</script>
 	</body>

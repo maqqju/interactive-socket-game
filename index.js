@@ -19,8 +19,8 @@ app.get("/load-time-data.js", (req,res) => {
 });
 
 io.on('connection', function(socket){
-  socket.on("jump", (msg) => {
-  	io.emit("jump", msg);
+  socket.on("action", (action) => {
+  	io.emit(action.action, action);
   });
 
   socket.on("crashed", (crashdata) => {

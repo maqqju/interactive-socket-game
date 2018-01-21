@@ -35,18 +35,22 @@
     </template>
   </div>
 	<script type="text/javascript">
-		socket.on("jump", (msg) => {
-			var event = document.createEvent("HTMLEvents");
-			event.initEvent("keydown",true,true);
-			event.eventName = "keydown";
-			event.keyCode = "38";
-			document.dispatchEvent(event);
-		});
+
 
 		document.addEventListener('DOMContentLoaded', () => {
-			var runnerConfig = Object.assign(Runner.config, { SPEED : 3, SPEED_DROP_COEFFICIENT : 1});
-			var runner = new Runner(".runner-container", runnerConfig);
-		});
+				var runnerConfig = Object.assign(Runner.config, { SPEED : 3, SPEED_DROP_COEFFICIENT : 1});
+				var runner = new Runner(".runner-container", runnerConfig);
+				function dispatchAction(action) {
+					var event = document.createEvent("HTMLEvents");
+					event.initEvent("keydown",true,true);
+					event.eventName = "keydown";
+					event.keyCode = "38";
+					document.dispatchEvent(event);
+				}
+
+				socket.on("jump", dispatchAction({action : "keyup", keyCode : "38"}));
+				socket.on("down", dispatchAction({action : "keydown", keyCode : "40"}));
+			});
 	</script>
 </body>
 </html>
