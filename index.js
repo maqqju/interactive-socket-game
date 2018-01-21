@@ -11,6 +11,13 @@ app.get('/', function(req, res){
 	}
 });
 
+app.get("/chrome-dino.js", (req,res) => {
+	res.sendFile(__dirname+"/chrome-dino.js")
+});
+app.get("/load-time-data.js", (req,res) => {
+	res.sendFile(__dirname+"/load-time-data.js")
+});
+
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on("jump", (msg) => {
