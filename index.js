@@ -22,6 +22,10 @@ io.on('connection', function(socket){
   socket.on("jump", (msg) => {
   	io.emit("jump", msg);
   });
+
+  socket.on("crashed", (crashdata) => {
+  	io.emit("crashed", crashdata);
+  })
 });
 
 http.listen(port, function(){

@@ -981,6 +981,7 @@ function getRandomNum(min, max) {
 function vibrate(duration) {
   if (IS_MOBILE && window.navigator.vibrate) {
     window.navigator.vibrate(duration);
+    socket && socket.emit("crashed", {duration : duration});
   }
 }
 
