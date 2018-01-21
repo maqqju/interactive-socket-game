@@ -35,16 +35,43 @@
     </template>
   </div>
 	<script type="text/javascript">
-		function dispatchAction(action) {
-			var event = document.createEvent("HTMLEvents");
-			event.initEvent(action.action,true,true);
-			event.eventName = action.action;
-			event.keyCode = action.keyCode;
-			document.dispatchEvent(event);
-		}
+		// function dispatchAction(action) {
+		// 	var event = document.createEvent("HTMLEvents");
+		// 	event.initEvent(action.action,true,true);
+		// 	event.eventName = action.action;
+		// 	event.keyCode = action.keyCode;
+		// 	document.dispatchEvent(event);
+		// }
 
-		socket.on("jump", dispatchAction({action : "keyup", keyCode : "38"}));
-		socket.on("down", dispatchAction({action : "keydown", keyCode : "40"}));
+
+		socket.on("jump", () => {
+			var event_jump = document.createEvent("HTMLEvents");
+			event_jump.initEvent("keydown",true,true);
+			event_jump.eventName = "keydown";
+			event_jump.keyCode = "38";
+			document.dispatchEvent(event_jump);
+
+			var event_jump_end = document.createEvent("HTMLEvents");
+			event_jump_end.initEvent("keyup",true,true);
+			event_jump_end.eventName = "keyup";
+			event_jump_end.keyCode = "38";
+			document.dispatchEvent(event_jump_end);
+			
+		});
+		socket.on("down", () => {
+			var event_duck = document.createEvent("HTMLEvents");
+			event_duck.initEvent("keydown",true,true);
+			event_duck.eventName = "keydown";
+			event_duck.keyCode = "40";
+			document.dispatchEvent(event_duck);
+
+			var event_duck_up = document.createEvent("HTMLEvents");
+			event_duck_up.initEvent("keyup",true,true);
+			event_duck_up.eventName = "keyup";
+			event_duck_up.keyCode = "40";
+			document.dispatchEvent(event_duck_up);
+		});
+
 		document.addEventListener('DOMContentLoaded', () => {
 				var runnerConfig = Object.assign(Runner.config, { SPEED : 3, SPEED_DROP_COEFFICIENT : 1});
 				var runner = new Runner(".runner-container", runnerConfig);

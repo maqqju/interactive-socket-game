@@ -9,8 +9,8 @@
 	</script>
 	<style type="text/css">
 		.console-button {
-			width : 500px;
-			height : 500px;
+			width : 200px;
+			height : 200px;
 		}
 
 		#jump {
@@ -25,19 +25,29 @@
 </head>
 	<body>
 		Controller
-		<button class="console-button" id="jump">JUMP</button>
-		<button class="console-button" id="down">DOWN</button>
+		<button class="console-button" id="jumpButton">JUMP</button>
+		<button class="console-button" id="downButton">DOWN</button>
 
 		<script type="text/javascript">
-			document.getElementById("jump").addEventListener("click", () => {
-				socket.emit("action", {action : "jump"});
+			document.getElementById("jumpButton").addEventListener("click", () => {
+				socket.emit("jump", {action : "jump", time : Date.now()});
 				return false;
 			});
 
-			document.getElementById("down").addEventListener("click", () => {
-				socket.emit("action", {action : "down"});
+			document.getElementById("downButton").addEventListener("click", () => {
+				socket.emit("down", {action : "down", time : Date.now()});
 				return false;
 			});
+
+			// document.getElementById("jump").addEventListener("click", () => {
+			// 	socket.emit("action", {action : "jump"});
+			// 	return false;
+			// });
+
+			// document.getElementById("down").addEventListener("click", () => {
+			// 	socket.emit("action", {action : "down"});
+			// 	return false;
+			// });
 
 			socket.on("crashed", (crashdata) => {
 				window.navigator.vibrate && window.navigator.vibrate(crashdata.duration * 100);
