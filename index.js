@@ -19,7 +19,6 @@ app.get("/load-time-data.js", (req,res) => {
 });
 
 io.on('connection', function(socket){
-  console.log('a user connected');
   socket.on("jump", (msg) => {
   	io.emit("jump", msg);
   });

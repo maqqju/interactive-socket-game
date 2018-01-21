@@ -36,7 +36,6 @@
   </div>
 	<script type="text/javascript">
 		socket.on("jump", (msg) => {
-			console.log("Received jump");
 			var event = document.createEvent("HTMLEvents");
 			event.initEvent("keydown",true,true);
 			event.eventName = "keydown";
@@ -49,7 +48,8 @@
 		});
 
 		document.addEventListener('DOMContentLoaded', () => {
-			var runner = new Runner(".runner-container");
+			var runnerConfig = Object.assign(Runner.config, { SPEED : 3, SPEED_DROP_COEFFICIENT : 1});
+			var runner = new Runner(".runner-container", runnerConfig);
 		});
 	</script>
 </body>
