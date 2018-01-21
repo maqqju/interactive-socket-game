@@ -7,9 +7,16 @@
 	<script>
 	  var socket = io();
 	</script>
-
 </head>
-<body>
-Controller
-</body>
+	<body>
+		Controller
+		<button id="sendButton">Press for Jump</button>
+
+		<script type="text/javascript">
+			document.getElementById("sendButton").addEventListener("click", () => {
+				socket.emit("jump", {time : Date.now()});
+				return false;
+			});
+		</script>
+	</body>
 </html>

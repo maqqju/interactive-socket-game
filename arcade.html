@@ -9,6 +9,16 @@
 
 </head>
 <body>
-Main arcade
+	Main arcade
+	<ul id="jumps">
+		
+	</ul>
+	<script type="text/javascript">
+		socket.on("jump", (msg) => {
+			var listElement = document.createElement("li");
+			listElement.innerHTML = "<b>Jump time </b> : "+msg.time;
+			document.getElementById("jumps").appendChild(listElement);
+		});
+	</script>
 </body>
 </html>
