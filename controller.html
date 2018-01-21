@@ -19,7 +19,7 @@
 				return false;
 			});
 			socket.on("crashed", (crashdata) => {
-				window.navigator.vibrate(crashdata.duration);
+				window.navigator.vibrate && window.navigator.vibrate(crashdata.duration);
 			}); 
 		</script>
 	</body>
