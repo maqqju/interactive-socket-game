@@ -20,6 +20,7 @@ app.get("/load-time-data.js", (req,res) => {
 
 io.on('connection', function(socket){
   socket.on("action", (action) => {
+  	console.log("Received action ", JSON.stringify(action));
   	io.emit(action.action, action);
   });
 
