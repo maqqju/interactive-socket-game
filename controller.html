@@ -28,8 +28,13 @@
 		<button class="console-button" id="duckButton">DUCK</button>
 
 		<script type="text/javascript">
-			document.getElementById("jumpButton").addEventListener("click", () => {
-				socket.emit("jump", {action : "jump", time : Date.now()});
+			document.getElementById("jumpButton").addEventListener("touchstart", () => {
+				socket.emit("jump down", {action : "jump down", time : Date.now()});
+				return false;
+			});
+
+			document.getElementById("jumpButton").addEventListener("touchend", () => {
+				socket.emit("jump up", {action : "jump up", time : Date.now()});
 				return false;
 			});
 

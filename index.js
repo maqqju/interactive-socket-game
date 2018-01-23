@@ -19,9 +19,12 @@ app.get("/load-time-data.js", (req,res) => {
 });
 
 io.on('connection', function(socket){
-  socket.on("jump", (action) => {
-  	//console.log("Received action ", JSON.stringify(action));
-  	io.emit("jump", action);
+  socket.on("jump down", (action) => {
+  	io.emit("jump down", action);
+  });
+
+  socket.on("jump up", (action) => {
+  	io.emit("jump up", action);
   });
 
   socket.on("duck down", (action) => {

@@ -18,7 +18,6 @@
 	</script>
 </head>
 <body>
-	Main arcade
 	<div class="runner-container">
 		<canvas id="runner-canvas" class="runner-canvas" width="856" height="300" style="width: 428px; height: 150px;"></canvas>
 	</div>
@@ -44,20 +43,23 @@
 		// }
 
 
-		socket.on("jump", () => {
+		socket.on("jump down", () => {
 			var event_jump = document.createEvent("HTMLEvents");
 			event_jump.initEvent("keydown",true,true);
 			event_jump.eventName = "keydown";
 			event_jump.keyCode = "38";
 			document.dispatchEvent(event_jump);
+		});
 
+		socket.on("jump up", () => {
 			var event_jump_end = document.createEvent("HTMLEvents");
 			event_jump_end.initEvent("keyup",true,true);
 			event_jump_end.eventName = "keyup";
 			event_jump_end.keyCode = "38";
 			document.dispatchEvent(event_jump_end);
-			
 		});
+
+
 		socket.on("duck down", () => {
 			// alert("Received DUCK");
 			var event_duck = document.createEvent("HTMLEvents");
