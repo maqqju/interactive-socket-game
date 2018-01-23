@@ -44,7 +44,7 @@
 			});
 
 			document.getElementById("duckButton").addEventListener("touchend", () => {
-				socket.emit("duck action", {action : "duck up", time : Date.now()});
+				socket.emit("action", {action : "duck up", time : Date.now()});
 				return false;
 			});
 
