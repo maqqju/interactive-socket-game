@@ -24,9 +24,9 @@ io.on('connection', function(socket){
   	io.emit("jump", action);
   });
 
-  socket.on("down", (action) => {
+  socket.on("duck", (action) => {
   	//console.log("Received action ", JSON.stringify(action));
-  	io.emit("down", action);
+  	io.emit("duck", action);
   });
 
   socket.on("crashed", (crashdata) => {

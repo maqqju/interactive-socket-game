@@ -13,11 +13,11 @@
 			height : 200px;
 		}
 
-		#jump {
+		#jumpButton {
 			background-color: green;
 		}
 
-		#down {
+		#duckButton {
 			background-color: red;
 		}
 
@@ -26,11 +26,16 @@
 	<body>
 		Controller
 		<button class="console-button" id="jumpButton">JUMP</button>
-		<!-- <button class="console-button" id="downButton">DOWN</button> -->
+		<button class="console-button" id="duckButton">DUCK</button>
 
 		<script type="text/javascript">
 			document.getElementById("jumpButton").addEventListener("click", () => {
 				socket.emit("jump", {action : "jump", time : Date.now()});
+				return false;
+			});
+
+			document.getElementById("duckButton").addEventListener("click", () => {
+				socket.emit("duck", {action : "duck", time : Date.now()});
 				return false;
 			});
 
