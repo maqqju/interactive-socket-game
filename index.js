@@ -12,12 +12,13 @@ const CENSIMENT = {
 app.get('/', function(req, res){
 	if (req.get("user-agent").indexOf("Mobile") > -1) {
 
-		if (!CENSIMENT.controller) {
-			CENSIMENT.controller++;
-			res.sendFile(__dirname + '/controller.html');
-		} else {
-			res.sendFile(__dirname + '/fullup.html');
-		}
+		res.sendFile(__dirname + '/controller.html');
+		// if (!CENSIMENT.controller) {
+		// 	CENSIMENT.controller++;
+		// 	res.sendFile(__dirname + '/controller.html');
+		// } else {
+		// 	res.sendFile(__dirname + '/fullup.html');
+		// }
 	} else {
    		res.sendFile(__dirname + '/arcade.html');
 	}
@@ -32,6 +33,9 @@ app.get("/load-time-data.js", (req,res) => {
 
 
 io.on('connection', function(socket){
+
+
+	//TODO right now this feature is switched on, pending further testing
 	socket.on("caw caw", () => {
 		console.log("Disconnecting Controller");
 		CENSIMENT.controller = 0;
