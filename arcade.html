@@ -34,47 +34,37 @@
     </template>
   </div>
 	<script type="text/javascript">
-		// function dispatchAction(action) {
-		// 	var event = document.createEvent("HTMLEvents");
-		// 	event.initEvent(action.action,true,true);
-		// 	event.eventName = action.action;
-		// 	event.keyCode = action.keyCode;
-		// 	document.dispatchEvent(event);
-		// }
+		const events = [
+			{
+				SOCKET_EVENT : "jump down",
+				KEY_CODE : "38",
+				HTML_EVENT : "keydown"
+			},
+			{
+				SOCKET_EVENT : "jump up",
+				KEY_CODE : "38",
+				HTML_EVENT : "keyup"
+			},
+			{
+				SOCKET_EVENT : "duck down",
+				KEY_CODE : "40",
+				HTML_EVENT : "keydown"
+			},
+			{
+				SOCKET_EVENT : "duck up",
+				KEY_CODE : "40",
+				HTML_EVENT : "keyup"
+			}
+		];
 
-
-		socket.on("jump down", () => {
-			var event_jump = document.createEvent("HTMLEvents");
-			event_jump.initEvent("keydown",true,true);
-			event_jump.eventName = "keydown";
-			event_jump.keyCode = "38";
-			document.dispatchEvent(event_jump);
-		});
-
-		socket.on("jump up", () => {
-			var event_jump_end = document.createEvent("HTMLEvents");
-			event_jump_end.initEvent("keyup",true,true);
-			event_jump_end.eventName = "keyup";
-			event_jump_end.keyCode = "38";
-			document.dispatchEvent(event_jump_end);
-		});
-
-
-		socket.on("duck down", () => {
-			// alert("Received DUCK");
-			var event_duck = document.createEvent("HTMLEvents");
-			event_duck.initEvent("keydown",true,true);
-			event_duck.eventName = "keydown";
-			event_duck.keyCode = "40";
-			document.dispatchEvent(event_duck);
-		});
-
-		socket.on("duck up", () => {
-			var event_duck_end = document.createEvent("HTMLEvents");
-			event_duck_end.initEvent("keyup",true,true);
-			event_duck_end.eventName = "keyup";
-			event_duck_end.keyCode = "40";
-			document.dispatchEvent(event_duck_end);
+		events.forEach((action) => {
+			socket.on(action.SOCKET_EVENT, () => {
+				var event_action = document.createEvent("HTMLEvents");
+				event_action.initEvent(action.HTML_EVENT,true,true);
+				event_action.eventName = action.HTML_EVENT;
+				event_action.keyCode = action.KEY_CODE;
+				document.dispatchEvent(event_action);	
+			})
 		})
 
 		document.addEventListener('DOMContentLoaded', () => {
