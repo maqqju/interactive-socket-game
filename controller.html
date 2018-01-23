@@ -29,22 +29,22 @@
 
 		<script type="text/javascript">
 			document.getElementById("jumpButton").addEventListener("touchstart", () => {
-				socket.emit("jump down", {action : "jump down", time : Date.now()});
+				socket.emit("action", {action : "jump down", time : Date.now()});
 				return false;
 			});
 
 			document.getElementById("jumpButton").addEventListener("touchend", () => {
-				socket.emit("jump up", {action : "jump up", time : Date.now()});
+				socket.emit("action", {action : "jump up", time : Date.now()});
 				return false;
 			});
 
 			document.getElementById("duckButton").addEventListener("touchstart", () => {
-				socket.emit("duck down", {action : "duck down", time : Date.now()});
+				socket.emit("action", {action : "duck down", time : Date.now()});
 				return false;
 			});
 
 			document.getElementById("duckButton").addEventListener("touchend", () => {
-				socket.emit("duck up", {action : "duck up", time : Date.now()});
+				socket.emit("duck action", {action : "duck up", time : Date.now()});
 				return false;
 			});
 
