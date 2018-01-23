@@ -32,33 +32,17 @@ app.get("/load-time-data.js", (req,res) => {
 
 
 io.on('connection', function(socket){
-	io.on("disconnect", () => {
+	socket.on("caw caw", () => {
 		CENSIMENT.controller = 0;
-		console.log(socket);
 	});
 
 	socket.on("action", (action) => {
 		io.emit(action.action, action);
   	});
-  // socket.on("jump down", (action) => {
-  // 	io.emit("jump down", action);
-  // });
+  	socket.on("crashed", (crashdata) => {
+	  	io.emit("crashed", crashdata);
+  	});
 
-  // socket.on("jump up", (action) => {
-  // 	io.emit("jump up", action);
-  // });
-
-  // socket.on("duck down", (action) => {
-  // 	io.emit("duck down", action);
-  // });
-
-  // socket.on("duck up", (action) => {
-  // 	io.emit("duck up", action);
-  // });
-
-  // socket.on("crashed", (crashdata) => {
-  // 	io.emit("crashed", crashdata);
-  // })
 });
 
 http.listen(port, function(){

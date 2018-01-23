@@ -50,7 +50,12 @@
 
 			socket.on("crashed", (crashdata) => {
 				window.navigator.vibrate && window.navigator.vibrate(crashdata.duration);
-			}); 
+			});
+
+			window.onbeforeunload = () => {
+				socket.emit("caw caw");
+				return true;
+			}
 		</script>
 	</body>
 </html>
