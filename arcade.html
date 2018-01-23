@@ -59,17 +59,21 @@
 			
 		});
 		socket.on("duck", () => {
+			// alert("Received DUCK");
 			var event_duck = document.createEvent("HTMLEvents");
 			event_duck.initEvent("keydown",true,true);
 			event_duck.eventName = "keydown";
 			event_duck.keyCode = "40";
 			document.dispatchEvent(event_duck);
 
-			var event_duck_up = document.createEvent("HTMLEvents");
-			event_duck_up.initEvent("keyup",true,true);
-			event_duck_up.eventName = "keyup";
-			event_duck_up.keyCode = "40";
-			document.dispatchEvent(event_duck_up);
+			setTimeout(() => {
+				var event_duck_end = document.createEvent("HTMLEvents");
+				event_duck_end.initEvent("keyup",true,true);
+				event_duck_end.eventName = "keyup";
+				event_duck_end.keyCode = "40";
+				document.dispatchEvent(event_duck_end);
+			}, 500);
+
 		});
 
 		document.addEventListener('DOMContentLoaded', () => {

@@ -24,7 +24,6 @@
 	</style>
 </head>
 	<body>
-		Controller
 		<button class="console-button" id="jumpButton">JUMP</button>
 		<button class="console-button" id="duckButton">DUCK</button>
 
@@ -38,11 +37,6 @@
 				socket.emit("duck", {action : "duck", time : Date.now()});
 				return false;
 			});
-
-			// document.getElementById("downButton").addEventListener("click", () => {
-			// 	socket.emit("down", {action : "down", time : Date.now()});
-			// 	return false;
-			// });
 
 			socket.on("crashed", (crashdata) => {
 				window.navigator.vibrate && window.navigator.vibrate(crashdata.duration);
