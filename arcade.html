@@ -58,23 +58,22 @@
 			document.dispatchEvent(event_jump_end);
 			
 		});
-		socket.on("duck", () => {
+		socket.on("duck down", () => {
 			// alert("Received DUCK");
 			var event_duck = document.createEvent("HTMLEvents");
 			event_duck.initEvent("keydown",true,true);
 			event_duck.eventName = "keydown";
 			event_duck.keyCode = "40";
 			document.dispatchEvent(event_duck);
-
-			setTimeout(() => {
-				var event_duck_end = document.createEvent("HTMLEvents");
-				event_duck_end.initEvent("keyup",true,true);
-				event_duck_end.eventName = "keyup";
-				event_duck_end.keyCode = "40";
-				document.dispatchEvent(event_duck_end);
-			}, 500);
-
 		});
+
+		socket.on("duck up", () => {
+			var event_duck_end = document.createEvent("HTMLEvents");
+			event_duck_end.initEvent("keyup",true,true);
+			event_duck_end.eventName = "keyup";
+			event_duck_end.keyCode = "40";
+			document.dispatchEvent(event_duck_end);
+		})
 
 		document.addEventListener('DOMContentLoaded', () => {
 				var runnerConfig = Object.assign(Runner.config, { SPEED : 3, SPEED_DROP_COEFFICIENT : 1});

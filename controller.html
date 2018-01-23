@@ -33,8 +33,13 @@
 				return false;
 			});
 
-			document.getElementById("duckButton").addEventListener("click", () => {
-				socket.emit("duck", {action : "duck", time : Date.now()});
+			document.getElementById("duckButton").addEventListener("touchstart", () => {
+				socket.emit("duck down", {action : "duck down", time : Date.now()});
+				return false;
+			});
+
+			document.getElementById("duckButton").addEventListener("touchend", () => {
+				socket.emit("duck up", {action : "duck up", time : Date.now()});
 				return false;
 			});
 
