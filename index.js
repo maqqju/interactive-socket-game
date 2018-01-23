@@ -33,6 +33,7 @@ app.get("/load-time-data.js", (req,res) => {
 
 io.on('connection', function(socket){
 	socket.on("caw caw", () => {
+		console.log("Disconnecting Controller");
 		CENSIMENT.controller = 0;
 	});
 
